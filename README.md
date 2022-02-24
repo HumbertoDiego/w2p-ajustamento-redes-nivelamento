@@ -19,21 +19,21 @@ Language- HTML, além de módulos Python abertos de uso científico, incluirá o
 software, exemplos, documentação de apoio e a metainformação, tudo estará
 disponível on-line e gratuito.
 
-## TODOs
+## Trabalho completo e explicações:
+[IMPLEMENTAÇÃO DE SISTEMA PARA CÁLCULOS GEODÉSICOS EM AMBIENTE COMPUTACIONAL LIVRE:
+AJUSTAMENTO DE REDE DE NIVELAMENTO GEOMÉTRICO](https://github.com/HumbertoDiego/w2p-ajustamento-redes-nivelamento/blob/main/static/PFC.pdf).
 
- *   PagSeguro integration
- *   Moip integration
-
-## Install
+## Instalação
 1. Clone este repositório dentro do diretório web2py/applications
 ```
-git clone https://github.com/HumbertoDiego/w2p-ajustamento-redes-nivelamento.git
+mkdir web2py/applications/se6alunos
+git clone https://github.com/HumbertoDiego/w2p-ajustamento-redes-nivelamento.git web2py/applications/se6alunos
 ```
-2. Run web2py
+2. Rodar web2py
 ```
 python web2py.py
 ```
-3. Access /se6alunos
+3. Accesse /se6alunos
 
 **Contribute!**
 
