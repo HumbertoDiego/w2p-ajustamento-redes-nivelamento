@@ -25,16 +25,15 @@ disponível on-line e gratuito.
  *   Moip integration
 
 ## Install
-1. Clone this repository inside your web2py applications folder
+1. Clone este repositório dentro do diretório web2py/applications
 ```
-git clone https://github.com/juliarizza/easy_store
+git clone https://github.com/HumbertoDiego/w2p-ajustamento-redes-nivelamento.git
 ```
 2. Run web2py
 ```
 python web2py.py
 ```
-3. Access /easy_store
-4. For the administrative interface, access /easy_store/adminpanel/index and enter username 'admmin@adm.in' and password 'admin'
+3. Access /se6alunos
 
 **Contribute!**
 
