@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+ <html class="no-js" lang="{{=T.accepted_language or 'en'}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{=response.title or request.application}}</title>
+    <meta name="application-name" content="{{=request.application}}">
+    <meta name="google-site-verification" content="Cálculo de ajustamento de redes de nivelamento: Implementação em ambientes computacionais livres">
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/ajunivel.css')}}"/>
+	<link rel="stylesheet" href="{{=URL('static','css/simple-sidebar.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <!-- Favicons -->
+    {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+    {{block head}}{{end}}
+    {{
+    # using sidebars need to know what sidebar you want to use
+    mc0 = 'col-md-12'
+    mc1 = 'col-md-9'
+    mc2 = 'col-md-6'
+    left_sidebar_enabled = globals().get('left_sidebar_enabled', False)
+    right_sidebar_enabled = globals().get('right_sidebar_enabled', False)
+    middle_column = {0: mc0, 1: mc1, 2: mc2}[
+    (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]
+    }}
+	<style>
+	.glyphicon{
+	display: initial;
+	}
+	</style>
+  </head>
+  <body>
+
+      <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.6";
+          fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+       </script>
+    <!-- Navbar ======================================= -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          {{=response.logo or ''}}
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+          </ul>
+          {{if response.menu:}}
+          {{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
+          {{pass}}
+        </div>
+      </div>
+    </nav>
+    <!-- Masthead ===================================== -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+				<li id="logo">
+					 <a href="{{=URL('default','ajunivgeo')}}"><img src="{{=URL('static','images/logo_IME_thumb.png')}}" alt="">
+                </li>
+                <li id="exec">
+                    <a href="{{=URL('default','executar')}}" class="accordion-toggle">
+                        <span class="glyphicon glyphicon-play"></span>&nbsp;&nbsp; Otimizar rede 
+                        <span class="badge">{{=sucessos}} </span></a>
+                </li>
+                <li id="exmp">
+<!-- 					<a href="{{=URL('default','exemplos')}}" class="accordion-toggle" data-toggle="collapse" data-target="#submenu"> -->
+               <a href="#" class="accordion-toggle" data-toggle="collapse" data-target="#submenu">
+					<span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp; Exemplos e Demos</a>
+					<ul id="submenu" style="padding-left: 20px">
+                        <li id = "demo1"><a href="#"><span class="glyphicon glyphicon-sunglasses"></span> Demo 1</a></li>
+						<li id = "demo2"><a href="#"><span class="glyphicon glyphicon-sunglasses"></span> Demo 2</a></li>
+						<li id = "demo3"><a href="#"><span class="glyphicon glyphicon-sunglasses"></span> Demo 3</a></li>
+                        <li id = "demo4"><a href="#"><span class="glyphicon glyphicon-sunglasses"></span> Demo 4</a></li>
+                        <li id = "demo5"><a href="#"><span class="glyphicon glyphicon-sunglasses"></span> Demo 5</a></li>
+
+                    </ul>
+                </li>
+				<li id='downloads'>
+                    <a href="{{=URL('default','downloads')}}" class="accordion-toggle">
+<!--                         <a href="#" class="accordion-toggle"> -->
+                        <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;&nbsp; Downloads</a>
+                </li>
+				<li id="refer">
+<!--                     <a href="{{=URL('default','refer')}}" class="accordion-toggle">&#9812;&nbsp;&nbsp;Referências</a> -->
+                         <a href="#" class="accordion-toggle">&#9812;&nbsp;&nbsp;Referências</a>
+                </li>
+            </ul>
+        </div>
+		<p>
+			<a href="#" class="sidebtn sidebtn-default" id="menu-toggle"><<>></a>
+		</p>
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12" id=update>
+					{{block header}}
+					{{include}}
+					{{end}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    {{block footer}} <!-- this is default footer -->
+    {{end}}
+    <!-- The javascript =============================== -->
+    <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+    <script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>
+    {{block page_js}}{{end page_js}}
+    {{if response.google_analytics_id:}}
+    <!-- Analytics ==================================== -->
+    <script src="{{=URL('static','js/analytics.min.js')}}"></script>
+    <script type="text/javascript">
+      analytics.initialize({
+      'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'}
+      });
+    </script>
+    {{pass}}
+    <!-- Share ============================y============ -->
+    <script src="{{=URL('static','js/share.js',vars=dict(static=URL('static','images')))}}"></script>
+	   <script>
+           function imprimir(){
+//                $("#wrapper").toggleClass("toggled");
+               $("#wrapper").toggleClass("toggled");
+               print();
+           }
+
+    $(document).ready(function(){
+
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+            });
+
+
+        $("#refer").click(function(e) {
+            e.preventDefault();
+            var txt = "<h1>REFERÊNCIAS</h1><hr><div class='boxout'><div class='media'><div class='media-left'><img alt='kisuallas' src='{{=URL('static','images/Kiusalaas.jpg')}}'></div><div class='media-body'><h4 >KIUSALAAS, Jaan. <b>Numerical Methods in Engineering With python 3</b>. 3ª Ed. The Pennsylvania State University.Cambridge University Press. 2013. 432p.</h4></div></div></div><div class='boxout'><div class='media'>      <div class='media-left media-middle'><a href='https://dl.dropboxusercontent.com/u/18065445/web2py/web2py_manual_5th.pdf'><img alt='web2py' src='{{=URL('static','images/wb2py.jpg')}}'></a></div><div class='media-body'>         <h4>DI PIERRO, MASSIMO. <b>Web2py complete reference manual</b>. 5th Edition. 2013. Library of Congress Cataloging-in-Publication.</br> Disponível em <a href='https://dl.dropboxusercontent.com/u/18065445/web2py/web2py_manual_5th.pdf'>https://dl.dropboxusercontent.com/u/18065445/web2py/web2py_manual_5th.pdf</a> Acesso em 10/05/2016.</h4></div></div></div><div class='boxout'><div class='media'><div class='media-left media-middle'><img alt='web2pycookbook' src='{{=URL('static','images/web2pycookbook.jpg')}}'></div><div class='media-body'><h4>REINGART, Mariano;et al.<b>Web2py Application Development Cookbook</b>. Packt Publishing. 2012. </h4></div></div></div><div class='boxout'><div class='media'><div class='media-left media-bottom'><a href='ftp://geoftp.ibge.gov.br/metodos_e_outros_documentos_de_referencia/normas'><img src='{{=URL('static','images/ibge.jpg')}}' >            </a></div><div class='media-body'><h4>IBGE. <b>Especificações e Normas Gerais para Levantamentos Geodésicos em território brasileiro</b>. RESOLUÇÃO - PR no 22, de 21-07-83.</br>Disponível em: <a href='ftp://geoftp.ibge.gov.br/metodos_e_outros_documentos_de_referencia/normas/bservico1602.pdf'>            ftp://geoftp.ibge.gov.br/documentos/geodesia/pdf/bservico1602.pdf</a>. Acesso em: 03/04/2016.</h4></div></div></div><div class='boxout'><div class='media'><div class='media-left media-middle'><a href='https://docs.scipy.org/doc/numpy-dev/numpy-ref.pdf'> <img alt='numpy' src='{{=URL('static','images/numpy.jpg')}}'></a></div><div class='media-body'><h4><b>Numpy reference 1.12.0</b>: Written by the NumPy community. 2015. Disponível em <a href='https://docs.scipy.org/doc/numpy-dev/numpy-ref.pdf'>https://docs.scipy.org/doc/numpy-dev/numpy-ref.pdf</a>. Acesso em 10/05/2016. </h4>  </div> </div></div><div class='boxout'> <div class='media'><div class='media-left media-middle'><img alt='gemael' src='{{=URL('static','images/gemy.jpg')}}'></div><div class='media-body'><h4>GEMAEL, Camil. <b>Introdução ao ajustamento de observações: Aplicações geodésicas</b>. Curitiba. UFPR, 1994. Reimpressão 2004.</h4></div></div></div><div class='boxout'><div class='media'><div class='media-left media-middle'><img alt='wolf' src='{{=URL('static','images/wolf.jpg')}}'></div><div class='media-body'><h4>GHILANI, Charles D.; WOLF, Paul R. <b>Adjustment Computatios: Spatial Data Analysis</b>.4.ed. JOHN WILEY & SONS, 2007. 611p.</h4></div></div></div><div class='boxout'><div class='media'>  <div class='media-left media-middle'><img alt='dalmolin' src='{{=URL('static','images/dalmolin.jpg')}}'></div> <div class='media-body'><h4>DALMOLIN, Quintino.<b>Ajustamento por mínimos quadrados</b>. Curitiba. UFPR, 2002. 169p</h4></div></div></div><div class='boxout'><div class='media'><div class='media-left media-middle'><img alt='davidlay' src='{{=URL('static','images/davidlay.jpg')}}'></div><div class='media-body'> <h4>LAY, David C.<b>Linear Algebra and Its Applications</b>. 5th Edition, University of Maryland. Pearson. 2016 . 579p  </h4> </div> </div></div><div class='boxout'> <div class='media'>        <div class='media-left media-middle'><img alt='unesp' src='{{=URL('static','images/unesp.png')}}'></div><div class='media-body'><h4>CAMARGO, Paulo de Oliveira. <b>Notas de aulas do Curso de Graduação em Engenharia Cartográfica</b>. FCT/UNESP. 2000. 222p.</h4></div></div></div><div class='boxout'><div class='media'><div class='media-left media-middle'> <a href='https://www.python.org/'><img alt='psf' src='{{=URL('static','images/psf.jpg')}}'></a></div><div class='media-body'><h4><b>Portal Python software Foundation.</b> Disponível em <a href='https://www.python.org/'>https://www.python.org/</a> Acesso em 10/05/2016.</h4></div></div></div><div class='boxout'><div class='media'><div class='media-left media-middle'><a href='http://www.w3schools.com/default.asp'><img alt='w3' src='{{=URL('static','images/w3.png')}}'></a></div><div class='media-body'><h4><b>Portal w3schools - The world's largest web developer site</b>. Disponível em <a href='http://www.w3schools.com/default.asp'> http://www.w3schools.com/default.asp</a> Acesso em 10/05/2016.</h4></div></div></div>";
+            $("#update").html(txt);
+            });
+
+        $("#demo1").click(function(e) {
+            e.preventDefault();
+            var txt = "<h1>EXEMPLOS E DEMONSTRAÇÕES</h1><hr><p id='demo1'>&nbsp;</p><div class='boxout' style='width:90%'><h1>Demo 1 - Montagem do arquivo texto com os dados para o ajustamento</h1><hr><h4>GEMAEL 2009) O quadro e o esquema que se seguem resumem um nivelamento geométrico que partiu da referência de nível A, de altitude nula; as setas indicam o sentido em que o terreno se eleva. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.</h4><img src='{{=URL('static','images/GemaelEx7-8-4esquema.jpg')}}' alt = 'gemael ex 7-9-4' ><img src='{{=URL('static','images/GemaelEx7-8-4quadro.jpg')}}' alt = 'gemael ex 7-9-4' ><h4>(i) Montagem do sistema de equações:</h4><img src='{{=URL('static','images/sistemagemael.png')}}' alt = 'gemael ex 7-9-4' > <h4>(ii) Montagem do arquivo:</h4> <img src='{{=URL('static','images/sistemagemael_txt.png')}}' alt = 'gemael ex 7-9-4' ><img src='{{=URL('static','images/sistemagemael_txt2.png')}}' alt = 'gemael ex 7-9-4' ><h4>(iii) Configurando a ferramenta:</h4><img src='{{=URL('static','images/setgemael.png')}}' alt = 'gemael ex 7-9-4'><h4>(iv) Resultados:</h4><img src='{{=URL('static','images/resultadosgemael.png')}}' alt = 'gemael ex 7-9-4' ></div>";
+            $("#update").html(txt);
+            });
+
+        $("#demo2").click(function(e) {
+            e.preventDefault();
+            var txt = "<h1>EXEMPLOS E DEMONSTRAÇÕES</h1><hr><p id='demo2'>&nbsp;</p><div class='boxout' style='width:90%'><h1>Demo 2 - Montagem do arquivo texto desconsiderando os comprimentos das linhas</h1><hr> <h4>GEMAEL 2009) O quadro e o esquema que se seguem resumem um nivelamento geométrico que partiu da referência de nível A, de altitude nula; as setas indicam o sentido em que o terreno se eleva. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.<b> Desconsidere os comprimentos das linhas.</b></h4><img src='{{=URL('static','images/GemaelEx7-8-4esquema.jpg')}}' alt = 'gemael ex 7-9-4' > <img src='{{=URL('static','images/GemaelEx7-8-4quadro.jpg')}}' alt = 'gemael ex 7-9-4' > <h4>(i) Montagem do sistema de equações:</h4> <img src='{{=URL('static','images/sistemagemael.png')}}' alt = 'gemael ex 7-9-4' > <h4>(ii) Montagem do arquivo:</h4><img src='{{=URL('static','images/sistemagemaelsempeso.png')}}' alt = 'gemael ex 7-9-4' ><h4>(iii) Configurando a ferramenta:</h4> <img src='{{=URL('static','images/setgemaelsempeso.png')}}' alt = 'gemael ex 7-9-4' > <h4>(iv) Resultados:</h4><img src='{{=URL('static','images/resultadosgemaelsempeso.png')}}' alt = 'gemael ex 7-9-4' >/div>";
+            $("#update").html(txt);
+            });
+
+
+         $("#demo3").click(function(e) {
+            e.preventDefault();
+             var txt = "<h1>EXEMPLOS E DEMONSTRAÇÕES</h1><hr><p id='demo3'>&nbsp;</p><div class='boxout' style='width:90%'> <h1>Demo 3 - Configuração da ferramenta para considerar modelagem própria dos erros nas observações</h1><hr> <h4>GEMAEL 2009) O quadro e o esquema que se seguem resumem um nivelamento geométrico que partiu da referência de nível A, de altitude nula; as setas indicam o sentido em que o terreno se eleva. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.<b> Considere a precisão do levantamento 2mm&radic;d, (d) em Km.</b></h4><img src='{{=URL('static','images/GemaelEx7-8-4esquema.jpg')}}' alt = 'gemael ex 7-9-4' > <img src='{{=URL('static','images/GemaelEx7-8-4quadro.jpg')}}' alt = 'gemael ex 7-9-4' > <h4>(i) Montagem do sistema de equações:</h4> <img src='{{=URL('static','images/sistemagemael.png')}}' alt = 'gemael ex 7-9-4' ><h4>(ii) Montagem do arquivo:</h4><img src='{{=URL('static','images/sistemagemael_txt.png')}}' alt = 'gemael ex 7-9-4' ><img src='{{=URL('static','images/sistemagemael_txt2.png')}}' alt = 'gemael ex 7-9-4' ><h4>(iii) Configurando a ferramenta:</h4><img src='{{=URL('static','images/setgemaeldp2.png')}}' alt = 'gemael ex 7-9-4' ><h4>(iv) Resultados:</h4><img src='{{=URL('static','images/resultadosgemaeldp2.png')}}' alt = 'gemael ex 7-9-4' ></div>";
+            $("#update").html(txt);
+            });
+
+         $("#demo4").click(function(e) {
+            e.preventDefault();
+            var txt = "<h1>EXEMPLOS E DEMONSTRAÇÕES</h1><hr><p id='demo4'>&nbsp;</p><div class='boxout' style='width:90%'><h1>Demo 4 - Configuração da ferramenta para considerar modelagem própria dos erros nas observações</h1><hr><h4>GHILANI &amp; WOLF) O quadro e o esquema que se seguem resumem um nivelamento geométrico com referências de nível os pontos A e B, de altitude 263,453m e 294,837m respectivamente; as setas indicam o sentido da visada. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.<b> Considere a precisão das observações indicada no quadro.</b></h4><img src='{{=URL('static','images/WolfProblem13-15esquema.png')}}' alt = 'wolf ex 13-15' > <img src='{{=URL('static','images/WolfProblem13-15quadro.png')}}' alt = 'wolf ex 13-15' ><h4>(i) Montagem do sistema de equações:</h4><img src='{{=URL('static','images/sistemawolf.png')}}' alt = 'wolf ex 13-15' ><h4>(ii) Montagem do arquivo:</h4><img src='{{=URL('static','images/sistemawolf_txt.png')}}' alt = 'wolf ex 13-15' ><h4>(iii) Configurando a ferramenta:</h4><img src='{{=URL('static','images/setwolf.png')}}' alt = 'wolf ex 13-15' ><h4>(iv) Resultados:</h4><img src='{{=URL('static','images/resultadoswolf.png')}}' alt = 'wolf ex 13-15'></div>";
+            $("#update").html(txt);
+            });
+
+        $("#demo5").click(function(e) {
+            e.preventDefault();
+            var txt = "<h1>EXEMPLOS E DEMONSTRAÇÕES</h1><hr><p id='demo5'>&nbsp;</p><div class='boxout' style='width:90%'><h1>Demo 5 - Montagem do arquivo texto acrescentando injunções</h1><hr><h4>O quadro e o esquema que se seguem resumem um nivelamento geométrico com referência de nível (RN) em A. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico. </h4><img src='{{=URL('static','images/esquemainjuc.jpg')}}' alt = 'injunçaoesquema' ><img src='{{=URL('static','images/quadroinjuc.jpg')}}' alt = 'injunçaoquadro'><h4>a) INJUÇÃO ABSOLUTA: O ponto A é uma RN de altura 100m:</h4><h4>(i) Modelagem, arquivo e resultado do problema a):</h4><img src='{{=URL('static','images/sistemainjuc_txt.png')}}' alt = 'sistemainjuc_txt' ><h4>b) INJUNÇÃO RELATIVA: O ponto A é uma RN de altura 100m, medido em um apararelho com precisão/incerteza de 0,2mm:</h4><h4>(ii) A montagem do sistema de equações do problema b) consiste em substituir o valor da RN por uma incógnita A em cada uma das equações, porém adicionando mais uma equação ao final para caracterizar a incerteza da RN:</h4><img src='{{=URL('static','images/sistemainjucrel_txt.png')}}' alt = 'sistemainjuc' ><h4>(iii) A configuração da ferramenta se dá escolhendo o arquivo e enviando-o, escolha o desvio Padrão pela modelagem do problema pois ele é convertido para manual automaticamente devido a presença de Injuções. A plataforma entende que as linhas com apenas 3 colunas são injunções relativas, sendo:</h4><img src='{{=URL('static','images/explicainjuc.jpg')}}' alt = 'explicainjuc' ></div>";
+            $("#update").html(txt);
+            });
+
+        $("#downloads").click(function(e) {
+            e.preventDefault();
+            var txt = "<h1>DOWNLOADS</h1><hr><div class='row'><div class='col-md-4'><div class='panel panel-danger'><div class='panel-heading'>                      <h3 class='panel-title'>Exercícios de ajustamento</h3></div><div class='panel-body'><p>Coletânea compactada de exercícios de ajustamento altimétrico de autores renomados, com a modelagem e arquivos texto já adequados para uso nesta plataforma.</p><p><a href='{{=URL('static','Exercicios.rar')}}'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-save'></span> QUESTÕES</button> </a><a href='{{=URL('static','Arquivos_texto.rar')}}'><button type='button' class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-save'></span> ARQUIVOS TEXTO</button></a></p></div></div></div><div class='col-md-4'><div class='panel panel-danger'> <div class='panel-heading'><h3 class='panel-title'>Projeto completo</h3></div><div class='panel-body'><p>Fundamentação teórica para o ajustamento, informações sobre Python voltadas a ajustamento e desenvolvimento web, detalhes do desenvolvimento e descrição do produto.</p><p><a href='{{=URL('static','PFC.pdf')}}'>                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-save'></span> PDF</button></a></p></div></div></div></div><div class='row'>  <div class='col-md-4'><div class='panel panel-success'><div class='panel-heading'><h3 class='panel-title'>Elementos da linguagem Python</h3></div><div class='panel-body'><p>Tabelas contendo o básico da linguagem, como palavras reservadas, funções embutidas no core (Built-in), Operadores aritiméticos, Operadores comparativos, Operadores Lógicos, as Variáveis mais comuns e os Laços mais comuns.</p><p><a href='{{=URL('static','APENDICE_B_elementos_python.pdf')}}' class='btn btn-default btn-sm' role='button'><span class='glyphicon glyphicon-save'></span> PDF</a></p></div></div></div><div class='col-md-4'><div class='panel panel-info'><div class='panel-heading'><h3 class='panel-title'>Exemplos de ajustamento</h3></div> <div class='panel-body'><p>Um exemplo de ajustamento pelo método dos mínimos quadrados realizado passo a passo e outro exemplo do mesmo tipo de solução aplicado a um problema de nivelamento de redes altimétricas extraído de Gemael 2009.</p><p><a href='{{=URL('static','APENDICE_C_D_exemplos_rede_e_ajustamento.pdf')}}' class='btn btn-default btn-sm' role='button'><span class='glyphicon glyphicon-save'></span> PDF</a></p></div></div> </div><div class='col-md-4'><div class='panel panel-danger'><div class='panel-heading'><h3 class='panel-title'>Especificações para nivelamento geométrico</h3></div><div class='panel-body'><p>Quadro extraído das <b>Especificações e Normas Gerais para Levantamentos Geodésicos em território brasileiro</b>. Resume os cuidados para se evitar a ocorrência e propagação dos erros sistemáticos.</p>            <p><a href='{{=URL('static','APENDICE_A_especificoes_para_medicao.pdf')}}' class='btn btn-default btn-sm' role='button'><span class='glyphicon glyphicon-save'></span> PDF</a></p> </div></div></div></div><div class='row'><div class='col-md-4'><div class='panel panel-success'><div class='panel-heading'>              <h3 class='panel-title'>Introdução aos módulos math, numpy, pandas e matplotlib.pyplot da linguagem Python</h3></div><div class='panel-body'>              <p>Os módulos de Python que foram usados neste trabalho com o alcance o suficiente para se concluir ajustamentos</p><p><a href='{{=URL('static','APENDICE_F_Introducao_modulos.pdf')}}' class='btn btn-default btn-sm' role='button'><span class='glyphicon glyphicon-save'></span> PDF</a></p></div></div></div><div class='col-md-4'><div class='panel panel-info'><div class='panel-heading'><h3 class='panel-title'>Exemplo de modelagem do peso das observações de desnível</h3></div><div class='panel-body'><p>Como obter a variância nas observações de desnível (𝜎Δℎ&sup2;)? Uma demosntração de como se obter esta variável tão importante no controle de qualidade do ajustamento.</p><p><a href='{{=URL('static','APENDICE_E_modelagem_exemplo.pdf')}}' class='btn btn-default btn-sm' role='button'><span class='glyphicon glyphicon-save'></span> PDF</a></p></div></div></div></div>";
+            $("#update").html(txt);
+            });
+
+    });
+    </script>
+  </body>
+</html>

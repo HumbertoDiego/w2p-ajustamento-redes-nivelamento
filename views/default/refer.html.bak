@@ -1,0 +1,167 @@
+{{extend 'layoutajuniv.html'}}
+{{block head}}
+	<link rel="stylesheet" href="{{=URL('static','css/ajunivel.css')}}"/>
+{{end}}
+<h1>REFERÊNCIAS</h1>
+<hr>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left">
+            <a href="">
+                <img alt="kisuallas" src="{{=URL('static','images/Kiusalaas.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 >KIUSALAAS, Jaan. <b>Numerical Methods in Engineering With python 3</b>. 3ª Ed. The Pennsylvania State University.
+            Cambridge University Press. 2013. 432p.</h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="">
+            <img alt="web2py" src="{{=URL('static','images/wb2py.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>DI PIERRO, MASSIMO. <b>Web2py complete reference manual</b>. 5th Edition. 2013. Library of Congress Cataloging-in-Publication.
+                </br> Disponível em <a href="https://dl.dropboxusercontent.com/u/18065445/web2py/
+                    web2py_manual_5th.pdf">https://dl.dropboxusercontent.com/u/18065445/web2py/ web2py_manual_5th.pdf</a> Acesso em 10/05/2016.
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="">
+            <img alt="web2pycookbook" src="{{=URL('static','images/web2pycookbook.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>REINGART, Mariano; et al. <b>Web2py Application Development Cookbook</b>. Packt Publishing. 2012.
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-bottom">
+            <a href="ftp://geoftp.ibge.gov.br/metodos_e_outros_documentos_de_referencia/normas">
+                <img src="{{=URL('static','images/ibge.jpg')}}" >
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>IBGE. <b>Especificações e Normas Gerais para Levantamentos Geodésicos em território brasileiro</b>. RESOLUÇÃO - PR no 22, de 21-07-83.</br>
+            Disponível em: <a href="ftp://geoftp.ibge.gov.br/metodos_e_outros_documentos_de_referencia/normas/bservico1602.pdf">
+            ftp://geoftp.ibge.gov.br/documentos/geodesia/pdf/bservico1602.pdf</a>. Acesso em: 03/04/2016.</h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="https://docs.scipy.org/doc/numpy-dev/numpy-ref.pdf"> 
+            <img alt="numpy" src="{{=URL('static','images/numpy.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4><b>Numpy reference 1.12.0</b>: Written by the NumPy community. 2015. Disponível em
+                <a href="https://docs.scipy.org/doc/numpy-dev/numpy-ref.pdf">https://docs.scipy.org/doc/numpy-dev/numpy-ref.pdf</a>.
+                Acesso em 10/05/2016.
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="">
+            <img alt="gemael" src="{{=URL('static','images/gemy.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>GEMAEL, Camil. <b>Introdução ao ajustamento de observações: Aplicações geodésicas</b>. Curitiba. UFPR, 1994. Reimpressão 2004.
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="">
+            <img alt="wolf" src="{{=URL('static','images/wolf.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>GHILANI, Charles D.; WOLF, Paul R. <b>Adjustment Computatios: Spatial Data Analysis</b>. 4.ed. JOHN WILEY & SONS, 2007. 611p.
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="">
+            <img alt="dalmolin" src="{{=URL('static','images/dalmolin.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>DALMOLIN, Quintino. <b>Ajustamento por mínimos quadrados</b>. Curitiba. UFPR, 2002. 169p
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="">
+            <img alt="davidlay" src="{{=URL('static','images/davidlay.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>LAY, David C. <b>Linear Algebra and Its Applications</b>. 5th Edition, University of Maryland. Pearson. 2016 . 579p
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="">
+            <img alt="unesp" src="{{=URL('static','images/unesp.png')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4>CAMARGO, Paulo de Oliveira. <b>Notas de aulas do Curso de Graduação em Engenharia Cartográfica</b>. FCT/UNESP. 2000. 222p.
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="https://www.python.org/">
+            <img alt="psf" src="{{=URL('static','images/psf.jpg')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4><b>Portal Python software Foundation.</b> Disponível em <a href="https://www.python.org/">https://www.python.org/</a> Acesso em 10/05/2016.
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="boxout">
+    <div class="media">
+        <div class="media-left media-middle">
+        <a href="http://www.w3schools.com/default.asp">
+            <img alt="w3" src="{{=URL('static','images/w3.png')}}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4><b>Portal w3schools - The world's largest web developer site</b>. Disponível em <a href="http://www.w3schools.com/default.asp">http://www.w3schools.com/default.asp</a> Acesso em 10/05/2016.
+            </h4>
+        </div>
+    </div>
+</div>

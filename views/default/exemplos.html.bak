@@ -1,0 +1,92 @@
+{{extend 'layoutajuniv.html'}}
+{{block head}}
+	<link rel="stylesheet" href="{{=URL('static','css/ajunivel.css')}}"/>
+{{end}}
+{{block header}}
+<h1>EXEMPLOS E DEMONSTRAÇÕES</h1>
+<hr>
+<p id="demo1">&nbsp;</p>
+<div class="boxout" style="width:90%">
+<h1>Demo 1 - Montagem do arquivo texto com os dados para o ajustamento</h1>
+<hr>
+    <h4>GEMAEL 2009) O quadro e o esquema que se seguem resumem um nivelamento geométrico que partiu da referência de nível A, de altitude nula; as setas indicam o sentido em que o terreno se eleva. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.</h4>
+<img src="{{=URL('static','images/GemaelEx7-8-4esquema.jpg')}}" alt = "gemael ex 7-9-4" >
+    <img src="{{=URL('static','images/GemaelEx7-8-4quadro.jpg')}}" alt = "gemael ex 7-9-4" >
+    <h4>(i) Montagem do sistema de equações:</h4>
+    <img src="{{=URL('static','images/sistemagemael.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(ii) Montagem do arquivo:</h4>
+    <img src="{{=URL('static','images/sistemagemael_txt.png')}}" alt = "gemael ex 7-9-4" >
+    <img src="{{=URL('static','images/sistemagemael_txt2.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(iii) Configurando a ferramenta:</h4>
+    <img src="{{=URL('static','images/setgemael.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(iv) Resultados:</h4>
+    <img src="{{=URL('static','images/resultadosgemael.png')}}" alt = "gemael ex 7-9-4" >
+    <p id="demo2">&nbsp;</p>
+</div>
+
+<div class="boxout" style="width:90%">
+    <h1>Demo 2 - Montagem do arquivo texto desconsiderando os comprimentos das linhas</h1>
+<hr>
+    <h4>GEMAEL 2009) O quadro e o esquema que se seguem resumem um nivelamento geométrico que partiu da referência de nível A, de altitude nula; as setas indicam o sentido em que o terreno se eleva. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.<b> Desconsidere os comprimentos das linhas.</b></h4>
+<img src="{{=URL('static','images/GemaelEx7-8-4esquema.jpg')}}" alt = "gemael ex 7-9-4" >
+    <img src="{{=URL('static','images/GemaelEx7-8-4quadro.jpg')}}" alt = "gemael ex 7-9-4" >
+    <h4>(i) Montagem do sistema de equações:</h4>
+    <img src="{{=URL('static','images/sistemagemael.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(ii) Montagem do arquivo:</h4>
+    <img src="{{=URL('static','images/sistemagemaelsempeso.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(iii) Configurando a ferramenta:</h4>
+    <img src="{{=URL('static','images/setgemaelsempeso.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(iv) Resultados:</h4>
+    <img src="{{=URL('static','images/resultadosgemaelsempeso.png')}}" alt = "gemael ex 7-9-4" >
+    <p id="demo3">&nbsp;</p>
+</div>
+<div class="boxout" style="width:90%">
+    <h1>Demo 3 - Configuração da ferramenta para considerar modelagem própria dos erros nas observações</h1>
+<hr>
+    <h4>GEMAEL 2009) O quadro e o esquema que se seguem resumem um nivelamento geométrico que partiu da referência de nível A, de altitude nula; as setas indicam o sentido em que o terreno se eleva. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.<b> Considere a precisão do levantamento 2mm&radic;d, (d) em Km.</b></h4>
+<img src="{{=URL('static','images/GemaelEx7-8-4esquema.jpg')}}" alt = "gemael ex 7-9-4" >
+    <img src="{{=URL('static','images/GemaelEx7-8-4quadro.jpg')}}" alt = "gemael ex 7-9-4" >
+    <h4>(i) Montagem do sistema de equações:</h4>
+    <img src="{{=URL('static','images/sistemagemael.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(ii) Montagem do arquivo:</h4>
+    <img src="{{=URL('static','images/sistemagemael_txt.png')}}" alt = "gemael ex 7-9-4" >
+    <img src="{{=URL('static','images/sistemagemael_txt2.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(iii) Configurando a ferramenta:</h4>
+    <img src="{{=URL('static','images/setgemaeldp2.png')}}" alt = "gemael ex 7-9-4" >
+    <h4>(iv) Resultados:</h4>
+    <img src="{{=URL('static','images/resultadosgemaeldp2.png')}}" alt = "gemael ex 7-9-4" >
+    <p id="demo4">&nbsp;</p>
+</div>
+<div class="boxout" style="width:90%">
+    <h1>Demo 4 - Configuração da ferramenta para considerar modelagem própria dos erros nas observações</h1>
+<hr>
+    <h4>GHILANI &amp; WOLF) O quadro e o esquema que se seguem resumem um nivelamento geométrico com referências de nível os pontos A e B, de altitude 263,453m e 294,837m respectivamente; as setas indicam o sentido da visada. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico.<b> Considere a precisão das observações indicada no quadro.</b></h4>
+    <img src="{{=URL('static','images/WolfProblem13-15esquema.png')}}" alt = "wolf ex 13-15" >
+    <img src="{{=URL('static','images/WolfProblem13-15quadro.png')}}" alt = "wolf ex 13-15" >
+    <h4>(i) Montagem do sistema de equações:</h4>
+    <img src="{{=URL('static','images/sistemawolf.png')}}" alt = "wolf ex 13-15" >
+    <h4>(ii) Montagem do arquivo:</h4>
+    <img src="{{=URL('static','images/sistemawolf_txt.png')}}" alt = "wolf ex 13-15" >
+    <h4>(iii) Configurando a ferramenta:</h4>
+    <img src="{{=URL('static','images/setwolf.png')}}" alt = "wolf ex 13-15" >
+    <h4>(iv) Resultados:</h4>
+    <img src="{{=URL('static','images/resultadoswolf.png')}}" alt = "wolf ex 13-15" >
+</div>
+<p id="demo5">&nbsp;</p>
+<div class="boxout" style="width:90%">
+<h1>Demo 5 - Montagem do arquivo texto acrescentando injunções</h1>
+<hr>
+    <h4>O quadro e o esquema que se seguem resumem um nivelamento geométrico com referência de nível (RN)em A. Ajuste os desníveis pelo método dos mínimos quadrados paramétrico. </h4>
+    <img src="{{=URL('static','images/esquemainjuc.jpg')}}" alt = "injunçaoesquema" >
+    <img src="{{=URL('static','images/quadroinjuc.jpg')}}" alt = "injunçaoquadro" >
+    <h4>a) INJUÇÃO ABSOLUTA: O ponto A é uma RN de altura 100m:</h4>
+    <h4>(i) Modelagem, arquivo e resultado do problema a):</h4>
+    <img src="{{=URL('static','images/sistemainjuc_txt.png')}}" alt = "sistemainjuc_txt" >
+    <h4>b) INJUNÇÃO RELATIVA: O ponto A é uma RN de altura 100m, medido em um apararelho com precisão/incerteza de 0,2mm:</h4>
+    <h4>(ii) A montagem do sistema de equações do problema b) consiste em substituir o valor da RN por uma incógnita A em cada uma das equações, porém adicionando mais uma equação ao final para caracterizar a incerteza da RN:</h4>
+    <img src="{{=URL('static','images/sistemainjucrel_txt.png')}}" alt = "sistemainjuc" >
+    <h4>(iii) A configuração da ferramenta se dá apenas escolhendo o arquivo e enviando-o, a plataforma entende que as linhas com apenas 3 colunas são injunções relativas, sendo:</h4>
+    <img src="{{=URL('static','images/explicainjuc.jpg')}}" alt = "explicainjuc" >
+</div>
+
+{{end}}

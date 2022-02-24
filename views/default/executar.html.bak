@@ -1,0 +1,211 @@
+{{extend 'layoutajuniv.html'}}
+{{block head}}
+<style>
+    @media print{
+        html, body * {
+            visibility: hidden !important;
+            position: static  !important;
+            margin:0  !important;
+            padding:0  !important;
+            }
+        .printable, .printable * {
+            visibility:visible;
+            }
+        .printable{
+            position:absolute !important;
+            left:0  !important;
+            top:0  !important;
+            }
+        }
+        }
+</style>
+{{end}}
+{{block header}}
+    <header style="background-color: rgb(10,102,241)">
+        <div class="w2p_flash alert alert-dismissable">{{=response.flash or ''}}</div>
+        <h1>Nivelamento pelo método paramétrico
+            <a href="#"><span class="badge" data-toggle="modal" data-target="#myModal">Ajuda </span></a>  <!-- Button trigger modal -->
+        </h1>
+
+<!-- Modal de ajuda-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-sm close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajuda</h4>
+      </div>
+        <div class="modal-body"> 
+            <h4><b>O que esta ferramenta faz?</b></h4> <p>Ela realiza o ajustamento de parâmetros de um sistema de equações redundante, especificamente para problemas de altimetria, bem como informa os dados relativos à qualidade do ajustamento.</p>
+            <h4><b>O que é o mínimo necessário para começar a usar a ferramenta?</b></h4> <p>O mínimo necessário são dados de desníveis observados de pontos no terreno com redundância de observações, por exemplo, se existem 4 pontos de altitude observada, 4 ou mais observações de desnível relativa a estes pontos devem ser feitas.</p>
+            <h4><b>Como esta plataforma recebe os parâmetros de entrada: as incógnitas, a estação ne nivelamento a vante, a estação de nivelamento a ré e os desníveis medidos?</b></h4> <p>Através de uma arquivo de texto sem formatação (com extensão .txt) estruturado de forma padronizada, assim a plataforma sabe como encontrar cada componente do problema.</p>
+            <h4><b>Como é a estrutura do arquivo de texto sem formatação que devo enviar?</b></h4> <p>Existem algumas formas aceitas de se estruturar seu arquivo, as possibilidades são esgotadas na página <a href="{{=URL('default','exemplos#demo1')}}">Exemplos e Demos</a>.</p>
+            <h4><b>Qual o retorno de dados esperado?</b></h4> <p>Os dados de retorno do ajustamento são agrupados em 4 tabelas e 1 gráfico, respectivamente uma tabela com os dados de seu arquivo de entrada concatenada com os resultados do ajustamento para cada observação (Desnível ajustado, resíduos do ajustamento e desvio padrão das observações modelado pela plataforma), uma 2ª tabela que resume o resultado dos Parâmetros ajustados, uma 3ª tabela em conjunto com um gráfico que resumem o teste de detecção de erros Chi quadrado e uma última tabela que resume o teste Baarda para identificação de erros grosseiros.</p>
+            <h4><b>O que é mais provável acontecer de errado no processamento?</b></h4> <p>Basicamente, a não estruturação correta dos dados dentro do arquivo de texto.</p>
+            <p> Atenção para:</p>
+            <ol>
+                <li>A extensão do arquivo ser .txt;</li>
+                <li>Alguns editores de texto permitem salvar informações de margem e parágrafo no cabeçalho de seu arquivo .txt, o que pode confundir a plataforma. Abra seu arquivo em um bloco de notas para verificar se existem linhas estranhas ao padronizado;</li>
+                <li>O separador de colunas é pelo menos um espaço;</li>
+                <li>Espaços após o último caractere da linha ou após a última linha pode induzir a plataforma a procurar por parâmetros de entrada que não existem. Evite-os;</li>
+                <li>Alguns caracteres especiais quando copiados e colados em bloco de notas podem aparecer como espaços. Evite o Ctrl+C/Ctrl+V. </li>
+            </ol>
+            <h4><b>Eu não estou entendendo nada! O que eu faço?</b></h4> <p>Experimente fazer o <a href="{{=URL('default','downloads')}}">Download</a> de problemas de ajustamento altimétrico de diversos autores, bem como do seu respectivo arquivo texto pronto para ser utilizado nesta plataforma. Também nesta página, você encontrará toda fundamentação teórica necessária.</p>
+            <p>Experimente acessar as <a href="{{=URL('default','refer')}}">Referências</a> pois algumas delas são de domínio público e estão disponíveis para download. Em especial as <b>Especificações e Normas Gerais para Levantamentos Geodésicos em território brasileiro</b> que traz detalhes sobre levantamentos de todos os tipos, inclusive altimétricos.</p>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $("#tab1").click(function(){
+                $("#tabela1").toggle("slow");
+                });
+
+                $("#tab2").click(function(){
+                $("#tabela2").toggle(700);
+                });
+
+                $("#tab3").click(function(){
+                $("#tabela3").toggle(800);
+                });
+
+                $("#tab4").click(function(){
+                $("#tabela4").toggle(1000);
+                });
+            });
+        </script>
+    </header>
+<h3>
+    {{=form}}
+</h3>
+{{if filename != None and erro==False:}}
+<div class="printable">
+<h3>
+    Ajustamento Paramétrico: {{=qtEq}} equações e {{=qtPontos}} incógnitas
+</h3>
+<h5 style="color:red">
+    {{=aviso}}
+</h5>
+<p>&nbsp;</p><h4  id="tab1">Observações de entrada + <u>Processamento</u> : &#9661;</h4>
+        <table class = 'table table-hover'  style="width:70%" id= "tabela1" >
+            <tr>
+                <th>Estação(ré)</th><th>Visada(vante):</th><th>Desnível(m):</th><th>Distância(Km):</th>
+                <th>{{if dp_na_4col:}}<u>Desvio Padrão da observação(m):</u>{{else:}}<u>Desvio Padrão da observação(m) = {{=x}}*RAIZ(dist[Km])/1000:</u>                   {{pass}}</th>
+                <th><u>Desnível ajustado(m):</u></th><th><u>Resíduos(m):</u></th>
+            </tr>
+            {{for i in range(0,len(c)):}}
+            <tr>
+                {{for k in range(0,len(c[i])):
+                response.write(TD(c[i][k]))
+                pass
+                response.write(TD(dp[i]))
+                response.write(TD(La[i]))
+                response.write(TD(V[i]))
+                }}
+            </tr>
+            {{pass}}
+        </table>
+    <p>&nbsp;</p><h4 id="tab2">Parâmetros Ajustados: &#9661;</h4>
+        <table class = 'table table-hover'  style="width:30%" id ="tabela2">
+            <tr>
+                <th>Ponto</th><th>Alt. Ajustada(m):</th><th>Desv Padrão(m):</th>
+            </tr>
+            {{for i in range(0,len(Incognitas)):}}
+            <tr>
+               {{response.write(TD(Incognitas[i]))}}
+               {{response.write(TD(X[i]))}}
+               {{response.write(TD(desvio_hi[i]))}}
+            </tr>
+            {{pass}}
+        </table>
+
+<p>&nbsp;</p><h4 id="tab3">Análise da qualidade do ajustamento - Teste estatístico para detecção de erros (&Chi;&sup2;): &#9661;</h4>
+            <table class = 'table table-hover'  style="width:65%" id ="tabela3" >
+                <tr>
+                    <th>Variância a priori(m&sup2;)(&sigma;&sup2;pri):</th><th>Variância a posterirori(m&sup2;)(&sigma;&sup2;pos):</th>
+                    <th>MIN = &Chi;&sup2;({{=df}}, 2.5%):</th><th>Calculado = &sigma;&sup2;pos*(Graus de Liberdade)/&sigma;&sup2;pri:</th>
+                    <th>MAX = &Chi;&sup2;({{=df}}, 97.5%):</th>
+                </tr>
+                <tr>
+                   {{=TD(sigmapriori)}}
+                   {{=TD(sigmaposteriori)}}
+                   {{=TD(quitabminbicaudal)}}
+                   {{=TD(quicalc)}}
+                   {{=TD(quitabmaxbicaudal)}}
+                </tr>
+            </table>
+<img src="{{=URL('static','images/fdpqui.png')}}" alt = "fdp Qui-square" >
+<p>&nbsp;</p><h4 id="tab4">Análise da qualidade do ajustamento - Teste estatístico para Identificação das Observações com Erro Grosseiro (Baarda): &#9661;</h4>
+            <table class = 'table table-hover'  style="width:80%" id ="tabela4" >
+                <tr>
+                    <th>Obs</th><th>Estação(ré)</th><th>Visada(vante):</th><th>Desnível(m):</th><th>Distância(Km):</th><th><u>Resíduos(m):</u></th>
+                    <th><u>Desv Padão dos Resíduos(m):</u></th><th><u>Correção normalizada:</u></th>
+                    <th><u>Aceitação por Baarda - &plusmn;{{=aceitabaarda}}:</u></th>
+                </tr>
+                {{for i in range(0,len(c)):}}
+                <tr>
+                    {{response.write(TD(i+1))}}
+                    {{for k in range(0,len(c[i])):
+                        response.write(TD(c[i][k]))
+                    pass
+                    response.write(TD(V[i]))
+                    response.write(TD(desvio_vi[i]))
+                    response.write(TD(wi[i]))
+                    if aceitar[i]=='aceito':
+                        response.write(TD('Não existe evidências estatísticas para a rejeição', _style="color:green"))
+                    else:
+                        response.write(TD('Existe evidências estatísticas para a rejeição', _style="color:red"))
+                    pass
+                    }}
+                </tr>
+                {{pass}}
+            </table>
+</div>
+
+<INPUT NAME="print" TYPE="button" VALUE="Imprimir" ONCLICK="print()">
+
+{{elif filename != None and erro==True:}}
+<div class="boxout">
+    <img align="right" src="{{=URL('static','images/zumba.jpg')}}" alt = "zumbi" >
+         <h1>
+            OPS! Algo de errado aconteceu...
+        </h1>
+    <h3>
+        O mais provável é que:
+    </h3>
+    <div align="left">
+    <ol>
+        &rarr; O arquivo enviado <b>não segue a estrutura</b> de texto necessária para o algoritmo encontar as variáveis. Acesse
+        <a href="{{=URL('default','exemplos#demo1')}}">Exemplos e Demos</a> para para entender melhor.
+    </ol>
+    <ol>
+        &rarr; O problema está <b>mal condicionado</b>, ou seja, pequenas alterações nos coeficientes resultam em grandes mudanças na solução.
+        Erros acumulados no decorrer dos procedimentos podem resultar em falha na aplicação das fórmulas de ajustamento.
+    </ol>
+        <ol>
+        &rarr; O processo de medição possui <b>erros grosseiros</b> que resultam em um problema mal condicionado.
+    </ol>
+    <ol>
+        &rarr; Você apenas não digitou os dados corretamente.
+    </ol>
+    </div>
+</div>
+
+{{pass}}
+
+
+<div class="boxout" id="boxfacebook">
+	<div class="fb-comments" data-href="http://humbertoalves.pythonanywhere.com" data-width="700" data-numposts="10"></div>
+</div>
+<!-- <script>
+     $(document).ready(function(){
+    	$("#exec a").addClass("jqactivate");
+    });
+</script> -->
+
+{{end}}

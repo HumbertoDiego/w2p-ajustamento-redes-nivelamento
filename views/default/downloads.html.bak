@@ -1,0 +1,107 @@
+{{extend 'layoutajuniv.html'}}
+<h1>DOWNLOADS</h1>
+<hr>
+<div class="row">
+          <div class="col-md-4">
+                <div class="panel panel-danger">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Exercícios de ajustamento</h3>
+                   </div>
+                  <div class="panel-body">
+                    <p>Coletânea compactada de exercícios de ajustamento altimétrico de autores renomados, com a modelagem e arquivos texto já adequados para uso nesta plataforma.</p>
+                    <p><a href="{{=URL('static','Exercicios.rar')}}">
+                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-save"></span> QUESTÕES</button>
+                    </a>
+                    <a href="{{=URL('static','Arquivos_texto.rar')}}">
+                        <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-save"></span> ARQUIVOS TEXTO</button>
+                    </a></p>
+                  </div>
+                </div>
+         </div>
+    <div class="col-md-4">
+                <div class="panel panel-danger">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Projeto completo</h3>
+                   </div>
+                  <div class="panel-body">
+                    <p>Fundamentação teórica para o ajustamento, informações sobre Python voltadas a ajustamento e desenvolvimento web, detalhes do desenvolvimento e descrição do produto.</p>
+                    <p><a href="{{=URL('static','PFC.pdf')}}">
+                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-save"></span> PDF</button>
+                    </a></p>
+                  </div>
+                </div>
+         </div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-md-4">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+              <h3 class="panel-title">Elementos da linguagem Python</h3>
+          </div>
+          <div class="panel-body">
+              <p>Tabelas contendo o básico da linguagem, como palavras reservadas, funções embutidas no core (Built-in), Operadores aritiméticos, Operadores comparativos, Operadores Lógicos, as Variáveis mais comuns e os Laços mais comuns.</p>
+            <p><a href="{{=URL('static','APENDICE_B_elementos_python.pdf')}}" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-save"></span> PDF</a></p>
+          </div>
+        </div>
+    </div>
+  <div class="col-md-4">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h3 class="panel-title">Exemplos de ajustamento</h3>
+          </div>
+          <div class="panel-body">
+              <p>Um exemplo de ajustamento pelo método dos mínimos quadrados realizado passo a passo e outro exemplo do mesmo tipo de solução aplicado a um problema de nivelamento de redes altimétricas extraído de Gemael 2009.</p>
+            <p><a href="{{=URL('static','APENDICE_C_D_exemplos_rede_e_ajustamento.pdf')}}" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-save"></span> PDF</a></p>
+          </div>
+        </div>
+    </div>
+  <div class="col-md-4">
+      <div class="panel panel-danger">
+          <div class="panel-heading">
+              <h3 class="panel-title">Especificações para nivelamento geométrico</h3>
+          </div>
+          <div class="panel-body">
+             <p>Quadro extraído das <b>Especificações e Normas Gerais para Levantamentos Geodésicos em território brasileiro</b>. Resume os cuidados para se evitar a ocorrência e propagação dos erros sistemáticos.</p>
+            <p><a href="{{=URL('static','APENDICE_A_especificoes_para_medicao.pdf')}}" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-save"></span> PDF</a></p>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-md-4">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+              <h3 class="panel-title">Introdução aos módulos math, numpy, pandas e matplotlib.pyplot da linguagem Python</h3>
+          </div>
+          <div class="panel-body">
+              <p>Os módulos de Python que foram usados neste trabalho com o alcance o suficiente para se concluir ajustamentos</p>
+            <p><a href="{{=URL('static','APENDICE_F_Introducao_modulos.pdf')}}" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-save"></span> PDF</a></p>
+          </div>
+        </div>
+    </div>
+  <div class="col-md-4">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h3 class="panel-title">Exemplo de modelagem do peso das observações de desnível</h3>
+          </div>
+          <div class="panel-body">
+              <p>Como obter a variância nas observações de desnível (𝜎Δℎ&sup2;)? Uma demosntração de como se obter esta variável tão importante no controle de qualidade do ajustamento.</p>
+            <p><a href="{{=URL('static','APENDICE_E_modelagem_exemplo.pdf')}}" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-save"></span> PDF</a></p>
+          </div>
+        </div>
+    </div>
+<div class="col-md-4">
+      <div class="panel panel-danger">
+          <div class="panel-heading">
+              <h3 class="panel-title">Solução de problemas de ajustamento altimétrico</h3>
+          </div>
+          <div class="panel-body">
+             <p>A demonstração da solução com as devidas considerações da odelagem dos pesos das observações de desnível.</p>
+            <p><a href="{{=URL('static','APENDICE_H_demonstracao_formula.pdf')}}" class="btn btn-default btn-sm" role="button"><span class="glyphicon glyphicon-save"></span> PDF</a></p>
+          </div>
+        </div>
+    </div>
+</div>
