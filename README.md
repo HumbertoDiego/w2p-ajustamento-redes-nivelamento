@@ -1,2 +1,2 @@
 # w2p-ajustamento-redes-nivelamento
-IMPLEMENTAÇÃO DE SISTEMA PARA CÁLCULOS GEODÉSICOS EM AMBIENTE COMPUTACIONAL LIVRE: AJUSTAMENTO DE REDE DE NIVELAMENTO GEOMÉTRICO
+Implementação de sistema para cálculos geodésicos em ambiente computacional livre: ajustamento de rede de nivelamento geométrico
